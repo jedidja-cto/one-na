@@ -1,0 +1,226 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 2rem 160px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(28, 43, 74, 0.045) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-h1 {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(9rem, 18vw, 18rem);
+  font-weight: 300;
+  line-height: 0.88;
+  color: var(--navy);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.9rem;
+  z-index: 1;
+}
+
+.hero-h1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(168, 116, 46, 0.07), transparent);
+  z-index: -1;
+}
+
+.hero-tagline {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.search-outer {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  margin-bottom: 1.4rem;
+  z-index: 1;
+}
+
+.search-bar {
+  width: 100%;
+  height: 58px;
+  padding: 0 140px 0 56px;
+  border: 1px solid var(--border-strong);
+  border-radius: 29px;
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 300;
+}
+
+.search-bar::placeholder {
+  color: var(--text-light);
+}
+
+.search-bar:focus {
+  border-color: var(--navy);
+  box-shadow: inset 0 1px 3px rgba(28, 43, 74, 0.08);
+}
+
+.search-ico {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.search-go {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 44px;
+  padding: 0 24px;
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 22px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.search-go:hover {
+  background: var(--navy-mid);
+  transform: translateY(-50%) scale(1.02);
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
+  margin-bottom: 3rem;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-pill {
+  padding: 6px 15px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: 18px;
+  font-size: 11px;
+  color: var(--text-mid);
+  background: transparent;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.hero-pill:hover,
+.hero-pill.active {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 13px;
+  color: var(--text-mid);
+  position: relative;
+  z-index: 1;
+  font-weight: 300;
+}
+
+.hero-stats strong {
+  color: var(--navy);
+  font-weight: 400;
+}
+
+.hd {
+  width: 4px;
+  height: 4px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  margin: 0 14px;
+  flex-shrink: 0;
+}
+
+.hero-dune {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.hero-ani {
+  position: absolute;
+  bottom: 130px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.hero-ani-l {
+  left: 6%;
+}
+
+.hero-ani-r {
+  right: 6%;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  z-index: 1;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(to bottom, var(--text-light), transparent);
+}

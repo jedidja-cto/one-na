@@ -1,0 +1,75 @@
+#regions {
+  background: var(--cream-dark);
+}
+
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.rg {
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  border-radius: var(--rlg);
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.rg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--navy);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.2s ease;
+}
+
+.rg:hover,
+.rg.active {
+  border-color: var(--navy);
+  background: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.rg:hover::before,
+.rg.active::before {
+  transform: scaleY(1);
+}
+
+.rg-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+
+.rg-count {
+  font-size: 10px;
+  color: var(--text-light);
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+@media (max-width: 1100px) {
+  .regions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .regions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

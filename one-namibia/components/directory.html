@@ -1,0 +1,32 @@
+<section class="sec" id="directory">
+  <div class="sec-head">
+    <div class="sec-head-text">
+      <div class="sec-label">Business Listings</div>
+      <div class="sec-title">Find Businesses</div>
+    </div>
+  </div>
+  <div class="dir-bar">
+    <span class="dir-lbl">Region</span>
+    <select class="dir-sel" id="regSel" onchange="applyFilters()"></select>
+    <div class="sep-line"></div>
+    <span class="dir-lbl">Sector</span>
+    <select class="dir-sel" id="secSel" onchange="applyFilters()"></select>
+    <div class="sep-line"></div>
+    <span class="dir-lbl">Sort</span>
+    <select class="dir-sel" id="sortSel" onchange="applyFilters()">
+      <option value="newest">Newest</option>
+      <option value="rating">Highest Rated</option>
+      <option value="name">A – Z</option>
+    </select>
+    <div class="dir-srch-wrap">
+      <svg class="dir-srch-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="6"></circle>
+        <path d="M21 21l-4.35-4.35"></path>
+      </svg>
+      <input class="dir-srch" id="dirSearch" type="text" placeholder="Search listings…" oninput="applyFilters()">
+    </div>
+    <span class="dir-ct" id="dirCount">15 of 15</span>
+  </div>
+  <div class="active-filters" id="activeFilters"></div>
+  <div class="listings" id="listingsGrid"></div>
+</section>

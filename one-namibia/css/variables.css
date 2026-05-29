@@ -1,0 +1,24 @@
+:root {
+  --cream: #f7f2ea;
+  --cream-dark: #f0ebe1;
+  --cream-mid: #f0ebe1;
+  --navy: #1c2b4a;
+  --navy-mid: #273a61;
+  --navy-light: #3b5381;
+  --gold: #a8742e;
+  --gold-light: #c48f48;
+  --gold-pale: #f1e6cf;
+  --text: #1c2b4a;
+  --text-mid: #57657b;
+  --text-light: #97a1b1;
+  --border: rgba(28, 43, 74, 0.08);
+  --border-med: rgba(28, 43, 74, 0.12);
+  --border-strong: rgba(28, 43, 74, 0.18);
+  --white: #ffffff;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --r: 4px;
+  --rlg: 10px;
+  --shadow: 0 1px 4px rgba(28, 43, 74, 0.06);
+  --shadow-hover: 0 8px 32px rgba(28, 43, 74, 0.12);
+}
