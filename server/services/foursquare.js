@@ -1,17 +1,23 @@
 require('dotenv').config();
 
+const API_BASE_URL = 'https://places-api.foursquare.com/places';
+const API_VERSION = '2025-06-17';
+
+const getHeaders = () => ({
+  'Authorization': `Bearer ${process.env.FOURSQUARE_API_KEY}`,
+  'Accept': 'application/json',
+  'X-Places-Api-Version': API_VERSION
+});
+
 const searchByCategory = async (query, region) => {
-  const url = new URL('https://api.foursquare.com/v3/places/search');
+  const url = new URL(`${API_BASE_URL}/search`);
   url.searchParams.set('query', query);
   url.searchParams.set('near', `${region}, Namibia`);
   url.searchParams.set('limit', '50');
-  url.searchParams.set('fields', 'fsq_id,name,location,tel,website,rating,stats,geocodes,categories');
+  url.searchParams.set('fields', 'fsq_place_id,name,location,tel,website,rating,stats,geocodes,categories');
 
   const response = await fetch(url, {
-    headers: {
-      'Authorization': process.env.FOURSQUARE_API_KEY,
-      'Accept': 'application/json'
-    }
+    headers: getHeaders()
   });
   if (!response.ok) {
     console.error(`Foursquare search error: ${response.status} ${response.statusText}`);
@@ -22,14 +28,11 @@ const searchByCategory = async (query, region) => {
 };
 
 const getPlaceDetails = async (fsqId) => {
-  const url = new URL(`https://api.foursquare.com/v3/places/${fsqId}`);
-  url.searchParams.set('fields', 'name,location,tel,website,rating,stats,hours,categories,geocodes');
+  const url = new URL(`${API_BASE_URL}/${fsqId}`);
+  url.searchParams.set('fields', 'fsq_place_id,name,location,tel,website,rating,stats,hours,categories,geocodes');
 
   const response = await fetch(url, {
-    headers: {
-      'Authorization': process.env.FOURSQUARE_API_KEY,
-      'Accept': 'application/json'
-    }
+    headers: getHeaders()
   });
   if (!response.ok) {
     console.error(`Foursquare details error: ${response.status} ${response.statusText}`);
@@ -46,21 +49,18 @@ const getAllResults = async (query, region) => {
 
   while (pageCount < maxPages) {
     pageCount++;
-    const url = new URL('https://api.foursquare.com/v3/places/search');
+    const url = new URL(`${API_BASE_URL}/search`);
     url.searchParams.set('query', query);
     url.searchParams.set('near', `${region}, Namibia`);
     url.searchParams.set('limit', '50');
-    url.searchParams.set('fields', 'fsq_id,name,location,tel,website,rating,stats,geocodes,categories');
+    url.searchParams.set('fields', 'fsq_place_id,name,location,tel,website,rating,stats,geocodes,categories');
 
     if (cursor) {
       url.searchParams.set('cursor', cursor);
     }
 
     const response = await fetch(url, {
-      headers: {
-        'Authorization': process.env.FOURSQUARE_API_KEY,
-        'Accept': 'application/json'
-      }
+      headers: getHeaders()
     });
 
     if (!response.ok) {

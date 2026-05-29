@@ -4,10 +4,11 @@ const testConnection = async () => {
   console.log('API Key (first 10 chars):', (process.env.FOURSQUARE_API_KEY || '').substring(0, 10) + '...');
   
   try {
-    const response = await fetch('https://api.foursquare.com/v3/places/search?query=Tourism&near=Erongo,Namibia', {
+    const response = await fetch('https://places-api.foursquare.com/places/search?query=Tourism&near=Erongo,Namibia', {
       headers: {
-        'Authorization': process.env.FOURSQUARE_API_KEY,
-        'Accept': 'application/json'
+        'Authorization': `Bearer ${process.env.FOURSQUARE_API_KEY}`,
+        'Accept': 'application/json',
+        'X-Places-Api-Version': '2025-06-17'
       }
     });
     

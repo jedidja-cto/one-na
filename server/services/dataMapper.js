@@ -1,6 +1,6 @@
 const mapFoursquareToListing = (place, sector, region) => {
   return {
-    id: place.fsq_id,
+    id: place.fsq_place_id,
     name: place.name,
     sector,
     region,
@@ -10,11 +10,11 @@ const mapFoursquareToListing = (place, sector, region) => {
     rating: place.rating ? place.rating / 2 : null,
     reviewCount: place.stats?.total_ratings || 0,
     location: {
-      lat: place.geocodes?.main?.latitude || null,
-      lng: place.geocodes?.main?.longitude || null
+      lat: place.latitude || null,
+      lng: place.longitude || null
     },
     source: 'foursquare',
-    sourceId: place.fsq_id,
+    sourceId: place.fsq_place_id,
     claimed: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
