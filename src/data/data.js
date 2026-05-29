@@ -59,5 +59,3 @@ export const AV_COLORS = {
   'Manufacturing': '#4a4a48',
   'NGOs & Non-Profits': '#1a7f5a',
 };
-
-export const av = (s) => AV_COLORS[s] || '#1b2845';
