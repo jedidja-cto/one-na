@@ -27,14 +27,14 @@ a {
 button {
   font-family: var(--font-body);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all var(--transition-btn);
 }
 
 img {
   display: block;
 }
 
-/* ─── SCROLLBAR ─── */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -45,10 +45,10 @@ img {
 
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
 }
 
-/* ─── SECTION SHELL ─── */
+/* Section Shell */
 .sec {
   padding: 100px 5rem;
 }
@@ -63,7 +63,7 @@ img {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--space-xs);
 }
 
 .sec-title {
@@ -71,7 +71,7 @@ img {
   font-size: clamp(1.9rem, 3vw, 2.7rem);
   font-weight: 300;
   color: var(--navy);
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
@@ -79,13 +79,13 @@ img {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 2.6rem;
+  margin-bottom: var(--space-xl);
 }
 
 .sec-head-text {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: var(--space-xs);
 }
 
 .view-all-btn {
@@ -98,7 +98,7 @@ img {
   border: none;
   border-bottom: 1px solid var(--navy);
   padding-bottom: 1px;
-  transition: color 0.18s ease, border-color 0.18s ease;
+  transition: color var(--transition-btn), border-color var(--transition-btn);
 }
 
 .view-all-btn:hover {
@@ -106,7 +106,7 @@ img {
   border-color: var(--gold);
 }
 
-/* ─── ACTIVE FILTER PILLS ANIMATION ─── */
+/* Active Filter Pills Animation */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -121,18 +121,18 @@ img {
 .active-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 1rem;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
 }
 
 .af-pill {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
   background: var(--navy);
   color: white;
-  border-radius: 3px;
+  border-radius: var(--r-md);
   font-size: 10px;
   animation: slideIn 0.22s ease-out;
 }
@@ -144,30 +144,30 @@ img {
   font-size: 13px;
   line-height: 1;
   padding: 0;
-  transition: color 0.1s;
+  transition: color var(--transition-btn);
 }
 
 .af-pill button:hover {
   color: white;
 }
 
-/* ─── FLOAT ─── */
+/* Float Button */
 .float-btn {
   position: fixed;
-  bottom: 22px;
-  right: 22px;
+  bottom: var(--space-md);
+  right: var(--space-md);
   z-index: 100;
   background: var(--navy);
   color: white;
   border: none;
-  border-radius: 22px;
-  padding: 11px 22px;
+  border-radius: var(--r-full);
+  padding: var(--space-sm) var(--space-lg);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  box-shadow: 0 4px 18px rgba(28, 43, 74, 0.28);
-  transition: all 0.18s ease;
+  box-shadow: var(--shadow-hover);
+  transition: all var(--transition-btn);
 }
 
 .float-btn:hover {
@@ -175,68 +175,56 @@ img {
   transform: translateY(-1px);
 }
 
-/* ─── TOAST ─── */
+/* Toast */
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 .toast {
   position: fixed;
-  bottom: 22px;
+  bottom: var(--space-md);
   left: 50%;
-  transform: translateX(-50%) translateY(70px);
+  transform: translate(-50%, 20px);
   z-index: 500;
   background: var(--navy);
   color: white;
-  padding: 11px 22px;
-  border-radius: 22px;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--r-full);
   font-size: 13px;
   font-weight: 400;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
   white-space: nowrap;
 }
 
 .toast.show {
-  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1100px) {
+/* Responsive */
+@media (max-width: 1280px) {
   .sec {
-    padding: 80px 4rem;
+    padding: 90px 4rem;
   }
-  .listings {
-    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .sec {
+    padding: 80px 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .sec {
-    padding: 60px 1.5rem;
-  }
-  .listings {
-    grid-template-columns: 1fr;
-  }
-  .why-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .cta-strip {
-    flex-direction: column;
-    padding: 48px 1.5rem;
-  }
-  .footer {
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 3rem 1.5rem;
-    text-align: center;
-  }
-  .footer-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .dir-bar {
-    gap: 7px;
-  }
-  .sep-line {
-    display: none;
+    padding: 60px var(--space-md);
   }
 }

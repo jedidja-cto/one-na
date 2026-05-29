@@ -15,10 +15,26 @@
   --border-med: rgba(28, 43, 74, 0.12);
   --border-strong: rgba(28, 43, 74, 0.18);
   --white: #ffffff;
+
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  --r: 4px;
-  --rlg: 10px;
+
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+  --r-full: 9999px;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  --transition-btn: 0.18s ease;
+  --transition-card: 0.2s ease;
+  --transition-overlay: 0.18s ease;
+
   --shadow: 0 1px 4px rgba(28, 43, 74, 0.06);
   --shadow-hover: 0 8px 32px rgba(28, 43, 74, 0.12);
 }

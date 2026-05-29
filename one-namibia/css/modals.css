@@ -1,4 +1,4 @@
-/* ─── MODAL ─── */
+/* Modal Styles */
 .modal-bg {
   position: fixed;
   inset: 0;
@@ -10,7 +10,7 @@
   padding: 5vh 1.5rem;
   overflow-y: auto;
   opacity: 0;
-  transition: opacity 0.18s ease;
+  transition: opacity var(--transition-overlay);
 }
 
 .modal-bg.open {
@@ -20,10 +20,10 @@
 
 .modal-box {
   background: var(--white);
-  border-radius: var(--rlg);
+  border-radius: var(--r-lg);
   width: 100%;
   max-width: 560px;
-  padding: 2rem;
+  padding: var(--space-xl);
   position: relative;
   margin: auto;
   transform: translateY(8px) scale(0.96);
@@ -39,15 +39,20 @@
 
 .modal-close-btn {
   position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
+  top: var(--space-md);
+  right: var(--space-md);
   background: none;
   border: none;
   font-size: 18px;
   color: var(--text-light);
   line-height: 1;
-  transition: color 0.18s ease;
+  transition: color var(--transition-btn);
   cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close-btn:hover {
@@ -56,16 +61,16 @@
 
 .modal-av-wrap {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
   position: relative;
 }
 
 .modal-av-wrap::before {
   content: '';
   position: absolute;
-  left: -2rem;
+  left: calc(-1 * var(--space-xl));
   top: 0;
   bottom: 0;
   width: 3px;
@@ -75,13 +80,13 @@
 .modal-av {
   width: 56px;
   height: 56px;
-  border-radius: 8px;
+  border-radius: var(--r-md);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   color: white;
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
 }
@@ -91,10 +96,12 @@
 }
 
 .modal-name {
-  font-size: 19px;
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
   color: var(--navy);
-  margin-bottom: 2px;
+  margin-bottom: var(--space-xs);
+  line-height: 1.2;
 }
 
 .modal-sec {
@@ -107,14 +114,14 @@
 .modal-rat-row {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  margin: 10px 0 16px;
+  gap: var(--space-sm);
+  margin: var(--space-md) 0 var(--space-lg);
   padding-left: 72px;
 }
 
 .modal-rat-big {
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 300;
   color: var(--navy);
   line-height: 1;
@@ -128,7 +135,7 @@
 .modal-hr {
   border: none;
   border-top: 0.5px solid var(--border);
-  margin: 16px 0;
+  margin: var(--space-lg) 0;
 }
 
 .modal-lbl {
@@ -136,12 +143,12 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-light);
-  margin-bottom: 5px;
+  margin-bottom: var(--space-xs);
   font-weight: 400;
 }
 
 .modal-val {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text);
   line-height: 1.75;
   font-weight: 300;
@@ -150,8 +157,8 @@
 .modal-contact-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
 }
 
 .modal-contact-row svg {
@@ -164,31 +171,31 @@
 .modal-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 5px;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
 }
 
 .modal-tag {
   font-size: 11px;
-  padding: 4px 10px;
+  padding: var(--space-xs) var(--space-sm);
   border: 0.5px solid var(--border-med);
-  border-radius: 4px;
+  border-radius: var(--r-md);
   color: var(--text-mid);
   font-weight: 400;
 }
 
 .modal-contact-btn {
   width: 100%;
-  margin-top: 1.2rem;
+  margin-top: var(--space-lg);
   background: var(--navy);
   color: white;
   border: none;
-  border-radius: 6px;
-  padding: 13px;
-  font-size: 13px;
+  border-radius: var(--r-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.04em;
-  transition: background 0.18s ease, transform 0.18s ease;
+  transition: background var(--transition-btn), transform var(--transition-btn);
   cursor: pointer;
 }
 
@@ -197,7 +204,7 @@
   transform: translateY(-1px);
 }
 
-/* ─── LIST FORM MODAL ─── */
+/* Form Styles */
 .form-bg {
   position: fixed;
   inset: 0;
@@ -209,7 +216,7 @@
   padding: 5vh 1.5rem;
   overflow-y: auto;
   opacity: 0;
-  transition: opacity 0.18s ease;
+  transition: opacity var(--transition-overlay);
 }
 
 .form-bg.open {
@@ -219,10 +226,10 @@
 
 .form-box {
   background: var(--white);
-  border-radius: var(--rlg);
+  border-radius: var(--r-lg);
   width: 100%;
   max-width: 520px;
-  padding: 2rem;
+  padding: var(--space-xl);
   margin: auto;
   position: relative;
   transform: translateY(8px) scale(0.96);
@@ -238,24 +245,25 @@
 
 .form-title {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 300;
   color: var(--navy);
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--space-xs);
+  line-height: 1.2;
 }
 
 .form-subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-mid);
-  margin-bottom: 1.6rem;
+  margin-bottom: var(--space-lg);
   font-weight: 300;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
 }
 
 .form-row.full {
@@ -265,7 +273,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--space-xs);
 }
 
 .form-group label {
@@ -280,14 +288,14 @@
 .form-group select,
 .form-group textarea {
   border: 0.5px solid var(--border-strong);
-  border-radius: 6px;
-  padding: 10px 12px;
+  border-radius: var(--r-md);
+  padding: var(--space-sm);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text);
   background: var(--white);
   outline: none;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color var(--transition-btn), background-color var(--transition-btn);
   width: 100%;
   font-weight: 300;
 }
@@ -307,17 +315,17 @@
 
 .form-group select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2396a0b0' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2397a1b1' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right var(--space-sm) center;
   padding-right: 32px;
   cursor: pointer;
 }
 
 .form-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 1.4rem;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
 }
 
 .form-submit {
@@ -325,11 +333,11 @@
   background: var(--navy);
   color: white;
   border: none;
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 13px;
+  border-radius: var(--r-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 14px;
   font-weight: 400;
-  transition: background 0.18s ease, transform 0.18s ease;
+  transition: background var(--transition-btn), transform var(--transition-btn);
   cursor: pointer;
 }
 
@@ -341,11 +349,11 @@
 .form-cancel {
   background: none;
   border: 0.5px solid var(--border-strong);
-  border-radius: 6px;
-  padding: 12px 20px;
-  font-size: 13px;
+  border-radius: var(--r-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 14px;
   color: var(--text-mid);
-  transition: all 0.18s ease;
+  transition: all var(--transition-btn);
   cursor: pointer;
 }
 
@@ -356,14 +364,19 @@
 
 .form-close {
   position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
+  top: var(--space-md);
+  right: var(--space-md);
   background: none;
   border: none;
   font-size: 18px;
   color: var(--text-light);
   cursor: pointer;
-  transition: color 0.18s ease;
+  transition: color var(--transition-btn);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-close:hover {
@@ -372,24 +385,24 @@
 
 .form-success {
   text-align: center;
-  padding: 2rem 0;
+  padding: var(--space-xl) 0;
 }
 
 .form-success-icon {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 
 .form-success h3 {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 300;
   color: var(--navy);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-sm);
 }
 
 .form-success p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-mid);
   line-height: 1.7;
   font-weight: 300;
