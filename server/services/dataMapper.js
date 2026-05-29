@@ -1,27 +1,3 @@
-// For existing Google Places mapping, we'll keep it as a placeholder
-const mapPlaceToListing = (place, sector, region) => {
-  return {
-    id: place.place_id,
-    name: place.name,
-    sector,
-    region,
-    address: place.formatted_address || null,
-    phone: place.formatted_phone_number || null,
-    website: place.website || null,
-    rating: place.rating || null,
-    reviewCount: place.user_ratings_total || 0,
-    location: {
-      lat: place.geometry?.location?.lat || null,
-      lng: place.geometry?.location?.lng || null
-    },
-    source: 'google',
-    sourceId: place.place_id,
-    claimed: false,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
-  };
-};
-
 const mapFoursquareToListing = (place, sector, region) => {
   return {
     id: place.fsq_id,
@@ -45,7 +21,4 @@ const mapFoursquareToListing = (place, sector, region) => {
   };
 };
 
-module.exports = {
-  mapPlaceToListing,
-  mapFoursquareToListing
-};
+module.exports = { mapFoursquareToListing };

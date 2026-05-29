@@ -1,12 +1,13 @@
 {
   "name": "one-namibia-directory",
   "version": "1.0.0",
-  "description": "ONE Namibia Business Directory with Google Places and Foursquare integration",
+  "description": "ONE Namibia Business Directory with Foursquare integration",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "dev": "node server/server.js",
-    "import": "node scripts/importPlaces.js"
+    "import": "node scripts/importPlaces.js",
+    "test:connection": "node test-connection.js"
   },
   "keywords": [],
   "author": "",

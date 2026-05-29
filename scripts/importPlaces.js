@@ -1,7 +1,6 @@
 require('dotenv').config({ path: '.env' });
 const { getAllResults } = require('../server/services/foursquare');
-const { mapPlaceToListing, mapFoursquareToListing } = require('../server/services/dataMapper');
-const { deduplicate } = require('../server/services/deduplicator');
+const { mapFoursquareToListing } = require('../server/services/dataMapper');
 const { SECTORS, REGIONS } = require('./data.cjs');
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +8,6 @@ const path = require('path');
 const importAll = async () => {
   console.log('Starting import...');
   
-  const googleListings = [];
   const foursquareListings = [];
   
   // Iterate all combinations
@@ -29,26 +27,18 @@ const importAll = async () => {
         console.error(`    Foursquare error:`, err.message);
       }
       
-      // Google import (placeholder)
-      // In real implementation, this would call Google Places API
-      
       // Add small delay between requests
       await new Promise(resolve => setTimeout(resolve, 200));
     }
   }
   
   console.log('\n=== Import Summary ===');
-  console.log(`Google results: ${googleListings.length}`);
   console.log(`Foursquare results: ${foursquareListings.length}`);
-  
-  // Deduplicate
-  const { listings: uniqueListings, duplicatesRemoved } = deduplicate([...googleListings, ...foursquareListings]);
-  console.log(`Duplicates removed: ${duplicatesRemoved}`);
-  console.log(`Final unique listings: ${uniqueListings.length}`);
+  console.log(`Final listings: ${foursquareListings.length}`);
   
   // Save to file
   const outputPath = path.join(__dirname, 'imported_listings.json');
-  fs.writeFileSync(outputPath, JSON.stringify(uniqueListings, null, 2));
+  fs.writeFileSync(outputPath, JSON.stringify(foursquareListings, null, 2));
   console.log(`\nResults saved to: ${outputPath}`);
 };
 
