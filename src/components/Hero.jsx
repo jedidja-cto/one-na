@@ -37,12 +37,12 @@ export default function Hero({ filters }) {
       >
         <ellipse cx="55" cy="108" rx="30" ry="38" fill="var(--navy)"></ellipse>
         <circle cx="55" cy="42" r="20" fill="var(--navy)"></circle>
-        <path d="M50 2 L44 22" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round"></path>
-        <path d="M60 2 L66 22" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round"></path>
-        <path d="M38 140 L33 160" stroke="var(--navy)" stroke-width="3.5" stroke-linecap="round"></path>
-        <path d="M72 140 L77 160" stroke="var(--navy)" stroke-width="3.5" stroke-linecap="round"></path>
-        <path d="M42 140 L40 156" stroke="var(--navy)" stroke-width="3" stroke-linecap="round"></path>
-        <path d="M68 140 L70 156" stroke="var(--navy)" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M50 2 L44 22" stroke="var(--navy)" strokeWidth="2.5" strokeLinecap="round"></path>
+        <path d="M60 2 L66 22" stroke="var(--navy)" strokeWidth="2.5" strokeLinecap="round"></path>
+        <path d="M38 140 L33 160" stroke="var(--navy)" strokeWidth="3.5" strokeLinecap="round"></path>
+        <path d="M72 140 L77 160" stroke="var(--navy)" strokeWidth="3.5" strokeLinecap="round"></path>
+        <path d="M42 140 L40 156" stroke="var(--navy)" strokeWidth="3" strokeLinecap="round"></path>
+        <path d="M68 140 L70 156" stroke="var(--navy)" strokeWidth="3" strokeLinecap="round"></path>
       </motion.svg>
 
       {/* Elephant silhouette right */}
@@ -58,11 +58,11 @@ export default function Hero({ filters }) {
         <ellipse cx="68" cy="108" rx="42" ry="36" fill="var(--navy)"></ellipse>
         <circle cx="68" cy="46" r="27" fill="var(--navy)"></circle>
         <ellipse cx="24" cy="72" rx="18" ry="12" fill="var(--navy)"></ellipse>
-        <path d="M24 84 L20 110 Q18 118 22 120" stroke="var(--navy)" stroke-width="5" stroke-linecap="round" fill="none"></path>
-        <path d="M48 138 L44 160" stroke="var(--navy)" stroke-width="5" stroke-linecap="round"></path>
-        <path d="M60 142 L60 160" stroke="var(--navy)" stroke-width="5" stroke-linecap="round"></path>
-        <path d="M76 142 L76 160" stroke="var(--navy)" stroke-width="5" stroke-linecap="round"></path>
-        <path d="M88 138 L92 160" stroke="var(--navy)" stroke-width="5" stroke-linecap="round"></path>
+        <path d="M24 84 L20 110 Q18 118 22 120" stroke="var(--navy)" strokeWidth="5" strokeLinecap="round" fill="none"></path>
+        <path d="M48 138 L44 160" stroke="var(--navy)" strokeWidth="5" strokeLinecap="round"></path>
+        <path d="M60 142 L60 160" stroke="var(--navy)" strokeWidth="5" strokeLinecap="round"></path>
+        <path d="M76 142 L76 160" stroke="var(--navy)" strokeWidth="5" strokeLinecap="round"></path>
+        <path d="M88 138 L92 160" stroke="var(--navy)" strokeWidth="5" strokeLinecap="round"></path>
       </motion.svg>
 
       <motion.div 
@@ -99,7 +99,7 @@ export default function Hero({ filters }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <svg className="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg className="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="6"></circle>
           <path d="M21 21l-4.35-4.35"></path>
         </svg>

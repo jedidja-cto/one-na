@@ -3,17 +3,17 @@ import { BIZ } from '../data/data.js';
 
 export function useFilters() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [selectedSector, setSelectedSector] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedSector, setSelectedSector] = useState('');
   const [sortOrder, setSortOrder] = useState('newest');
 
-  const clearRegion = () => setSelectedRegion(null);
-  const clearSector = () => setSelectedSector(null);
+  const clearRegion = () => setSelectedRegion('');
+  const clearSector = () => setSelectedSector('');
   const clearSearch = () => setSearchQuery('');
   const clearAll = () => {
     setSearchQuery('');
-    setSelectedRegion(null);
-    setSelectedSector(null);
+    setSelectedRegion('');
+    setSelectedSector('');
     setSortOrder('newest');
   };
 
@@ -22,24 +22,24 @@ export function useFilters() {
       b.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       b.sector.toLowerCase().includes(searchQuery.toLowerCase()) ||
       b.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesRegion = selectedRegion === null || b.region === selectedRegion;
-    const matchesSector = selectedSector === null || b.sector === selectedSector;
+    const matchesRegion = selectedRegion === '' || b.region === selectedRegion;
+    const matchesSector = selectedSector === '' || b.sector === selectedSector;
     return matchesSearch && matchesRegion && matchesSector;
   });
 
   const sorted = [...filtered].sort((a, b) => {
     if (sortOrder === 'newest') return b.added - a.added;
-    if (sortOrder === 'highest') return b.rating - a.rating;
-    if (sortOrder === 'az') return a.name.localeCompare(b.name);
+    if (sortOrder === 'rating') return b.rating - a.rating;
+    if (sortOrder === 'name') return a.name.localeCompare(b.name);
     return 0;
   });
 
   return {
     searchQuery, setSearchQuery,
-    selectedRegion, setSelectedRegion,
-    selectedSector, setSelectedSector,
+    selectedRegion, setSelectedRegion, setRegion: setSelectedRegion,
+    selectedSector, setSelectedSector, setSector: setSelectedSector,
     sortOrder, setSortOrder,
     clearRegion, clearSector, clearSearch, clearAll,
-    filtered: sorted,
+    filteredList: sorted,
   };
 }
