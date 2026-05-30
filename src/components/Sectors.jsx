@@ -30,17 +30,16 @@ export default function Sectors({ onSelect }) {
         {SECTORS.map(sector => (
           <motion.div 
             key={sector.name}
-            className="sector-card"
-            style={{
-              '--sector-color': sector.color
-            }}
+            className="sc"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             onClick={() => handleClick(sector.name)}
           >
-            <div className="sector-icon" dangerouslySetInnerHTML={{ __html: sector.svg }} />
-            <div className="sector-name">{sector.name}</div>
+            <div className="sc-num">#{sector.id}</div>
+            <div className="sc-icon" dangerouslySetInnerHTML={{ __html: sector.svg }} />
+            <div className="sc-name">{sector.name}</div>
+            <div className="sc-count">{sector.count} businesses</div>
           </motion.div>
         ))}
       </motion.div>

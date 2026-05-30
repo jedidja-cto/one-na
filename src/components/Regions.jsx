@@ -3,7 +3,7 @@ import { REGIONS, BIZ } from '../data/data.js';
 
 export default function Regions({ selected, onSelect }) {
   const handleClick = (regionName) => {
-    onSelect(selected === regionName ? null : regionName);
+    onSelect(selected === regionName ? "" : regionName);
     document.getElementById('directory')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -25,17 +25,17 @@ export default function Regions({ selected, onSelect }) {
         variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
       >
         {REGIONS.map(region => (
-          <motion.button
+          <motion.div
             key={region.name}
-            className={`region-card ${selected === region.name ? 'active' : ''}`}
+            className={`rg ${selected === region.name ? 'active' : ''}`}
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             onClick={() => handleClick(region.name)}
           >
-            <div className="region-name">{region.name}</div>
-            <div className="region-count">{countForRegion(region.name)}</div>
-          </motion.button>
+            <div className="rg-name">{region.name}</div>
+            <div className="rg-count">{countForRegion(region.name)}</div>
+          </motion.div>
         ))}
       </motion.div>
     </section>
