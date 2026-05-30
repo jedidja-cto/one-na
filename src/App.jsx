@@ -12,6 +12,7 @@ import Footer from './components/Footer.jsx';
 import ListingModal from './components/ListingModal.jsx';
 import ListForm from './components/ListForm.jsx';
 import Toast from './components/Toast.jsx';
+import CustomCursor from './components/CustomCursor.jsx';
 import { motion } from 'framer-motion';
 
 function App() {

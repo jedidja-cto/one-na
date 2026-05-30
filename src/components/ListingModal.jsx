@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { av } from '../utils/avatarColors.js';
+import { avatarColor } from '../utils/avatarColors.js';
 
 export default function ListingModal({ business, onClose }) {
   const handleBackdropClick = (e) => {
@@ -38,7 +38,7 @@ export default function ListingModal({ business, onClose }) {
         >
           <button className="modal-close-btn" onClick={onClose}>✕</button>
           <div className="modal-avatar" style={{
-            backgroundColor: av(business.sector),
+            backgroundColor: avatarColor(business.sector),
             boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.2)',
             borderRadius: '8px',
             borderLeft: '3px solid var(--gold)'

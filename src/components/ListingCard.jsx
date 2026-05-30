@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { av } from '../utils/avatarColors.js';
+import { avatarColor } from '../utils/avatarColors.js';
 
-export default function ListingCard({ business, onClick }) {
+export default function ListingCard({ business, onClick, isHovered, onMouseEnter, onMouseLeave }) {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
     stars.push(
@@ -20,13 +20,21 @@ export default function ListingCard({ business, onClick }) {
       transition={{ duration: 0.25 }}
       className="listing-card"
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      style={{
+        transform: isHovered ? 'translateY(-2px) scale(1.01)' : 'translateY(0)',
+        boxShadow: isHovered ? 'var(--shadow-hover)' : 'none',
+        borderColor: isHovered ? 'var(--navy-light)' : 'var(--border)',
+        transition: 'all 0.2s ease'
+      }}
     >
       <div className="listing-top">
         <div className="listing-avatar" style={{
-          backgroundColor: av(business.sector),
-          boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.2)',
-          borderRadius: '8px'
-        }}>
+            backgroundColor: avatarColor(business.sector),
+            boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.2)',
+            borderRadius: '8px'
+          }}>
           {business.init}
         </div>
         <div className="listing-titles">

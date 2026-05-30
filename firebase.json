@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "one-namibia",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",

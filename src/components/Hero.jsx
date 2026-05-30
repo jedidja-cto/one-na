@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { BIZ, SECTORS, REGIONS } from '../data/data.js';
+import NamibiaMapCanvas from './NamibiaMapCanvas.jsx';
 
 export default function Hero({ filters }) {
+  const { scrollY } = useScroll();
   const handleHeroSearch = (e) => {
     filters.setSearchQuery(e.target.value);
   };
@@ -13,8 +15,14 @@ export default function Hero({ filters }) {
     document.getElementById('directory')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const oryxX = useTransform(scrollY, [0, 500], [0, -30]);
+  const elephantX = useTransform(scrollY, [0, 500], [0, 30]);
+
+  const letters = ['O', 'N', 'E'];
+
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" style={{ position: 'relative' }}>
+      <NamibiaMapCanvas />
       <div className="hero-dots"></div>
 
       {/* Oryx silhouette left */}
@@ -22,8 +30,9 @@ export default function Hero({ filters }) {
         className="hero-ani hero-ani-l" 
         width="110" height="160" viewBox="0 0 110 160" 
         fill="none"
-        initial={{ opacity: 0, x: -20 }}
+        initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 0.13, x: 0 }}
+        style={{ x: oryxX }}
         transition={{ duration: 1, delay: 0.8 }}
       >
         <ellipse cx="55" cy="108" rx="30" ry="38" fill="var(--navy)"></ellipse>
@@ -41,8 +50,9 @@ export default function Hero({ filters }) {
         className="hero-ani hero-ani-r" 
         width="130" height="160" viewBox="0 0 130 160" 
         fill="none"
-        initial={{ opacity: 0, x: 20 }}
+        initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 0.13, x: 0 }}
+        style={{ x: elephantX }}
         transition={{ duration: 1, delay: 0.8 }}
       >
         <ellipse cx="68" cy="108" rx="42" ry="36" fill="var(--navy)"></ellipse>
@@ -62,16 +72,24 @@ export default function Hero({ filters }) {
         transition={{ duration: 0.6, delay: 0.3 }}
       >Namibia's Business Directory</motion.div>
 
-      <motion.h1 
-        className="hero-h1"
-        initial={{ opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(168,116,46,0.07), transparent)',
-          backgroundPosition: 'center'
-        }}
-      >ONE</motion.h1>
+      <h1 className="hero-h1" style={{
+        background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(168,116,46,0.07), transparent)',
+        backgroundPosition: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '0.2em',
+      }}>
+        {letters.map((letter, index) => (
+          <motion.span 
+            key={index}
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </h1>
 
       <div className="hero-tagline">Connect · Discover · Grow</div>
 

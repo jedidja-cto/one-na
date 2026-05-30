@@ -1,23 +1,11 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BIZ, SECTORS, REGIONS } from '../data/data.js';
-import ListingCard from './ListingCard.jsx';
+import ListingCard from './ListingCard';
+import { avatarColor } from '../utils/avatarColors';
 
 export default function Directory({ filters, onCardClick }) {
-  const handleRegionChange = (e) => {
-    filters.setSelectedRegion(e.target.value === '' ? null : e.target.value);
-  };
-  const handleSectorChange = (e) => {
-    filters.setSelectedSector(e.target.value === '' ? null : e.target.value);
-  };
-  const handleSortChange = (e) => {
-    const val = e.target.value;
-    if (val === 'name') filters.setSortOrder('az');
-    else if (val === 'rating') filters.setSortOrder('highest');
-    else filters.setSortOrder('newest');
-  };
-  const handleSearchChange = (e) => {
-    filters.setSearchQuery(e.target.value);
-  };
+  const [hoveredId, setHoveredId] = useState(null);
+  const { filteredList, searchQuery, selectedRegion, selectedSector, sortOrder, setSearchQuery, setRegion, setSector, setSortOrder, clearRegion, clearSector, clearSearch, clearAll } = filters;
 
   return (
     <section className="sec" id="directory">
@@ -27,112 +15,157 @@ export default function Directory({ filters, onCardClick }) {
           <div className="sec-title">Find Businesses</div>
         </div>
       </div>
+      
       <div className="dir-bar">
         <span className="dir-lbl">Region</span>
-        <select 
-          className="dir-sel" 
-          value={filters.selectedRegion || ''} 
-          onChange={handleRegionChange}
-        >
+        <select className="dir-sel" id="regSel" value={selectedRegion} onChange={(e) => setRegion(e.target.value)}>
           <option value="">All Regions</option>
-          {REGIONS.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
+          {['Erongo', 'Hardap', 'Karas', 'Kavango East', 'Kavango West', 'Khomas', 'Kunene', 'Ohangwena', 'Omaheke', 'Omusati', 'Oshana', 'Oshikoto', 'Otjozondjupa', 'Zambezi'].map(region => (
+            <option key={region} value={region}>{region}</option>
+          ))}
         </select>
+        
         <div className="sep-line"></div>
+        
         <span className="dir-lbl">Sector</span>
-        <select 
-          className="dir-sel" 
-          value={filters.selectedSector || ''} 
-          onChange={handleSectorChange}
-        >
+        <select className="dir-sel" id="secSel" value={selectedSector} onChange={(e) => setSector(e.target.value)}>
           <option value="">All Sectors</option>
-          {SECTORS.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
+          {['Agriculture & Farming', 'Mining & Resources', 'Tourism & Hospitality', 'Retail & Shopping', 'Construction & Real Estate', 'Finance & Banking', 'ICT & Technology', 'Health & Wellness', 'Education & Training', 'Transport & Logistics', 'Legal & Professional Services', 'Food & Beverage', 'Arts, Crafts & Culture', 'Manufacturing', 'NGOs & Non-Profits'].map(sector => (
+            <option key={sector} value={sector}>{sector}</option>
+          ))}
         </select>
+        
         <div className="sep-line"></div>
+        
         <span className="dir-lbl">Sort</span>
-        <select 
-          className="dir-sel" 
-          value={
-            filters.sortOrder === 'az' ? 'name' :
-            filters.sortOrder === 'highest' ? 'rating' : 'newest'
-          } 
-          onChange={handleSortChange}
-        >
+        <select className="dir-sel" id="sortSel" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
           <option value="newest">Newest</option>
           <option value="rating">Highest Rated</option>
           <option value="name">A – Z</option>
         </select>
+        
         <div className="dir-srch-wrap">
-          <svg className="dir-srch-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="6"></circle>
-            <path d="M21 21l-4.35-4.35"></path>
-          </svg>
-          <input 
-            className="dir-srch" 
-            type="text" 
-            placeholder="Search listings…" 
-            value={filters.searchQuery} 
-            onInput={handleSearchChange}
-          />
+          <span className="dir-srch-ico">⌕</span>
+          <input className="dir-srch" id="dirSearch" type="text" placeholder="Search listings…" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
-        <span className="dir-ct">{filters.filtered.length} of {BIZ.length}</span>
+        
+        <span className="dir-ct" id="dirCount">{filteredList.length} of {15}</span>
       </div>
+
+      {/* Active Filters */}
       <div className="active-filters">
-        <AnimatePresence>
-          {filters.selectedRegion && (
-            <motion.div
-              key="region-filter"
-              className="active-pill"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              {filters.selectedRegion} <button onClick={filters.clearRegion}>✕</button>
-            </motion.div>
-          )}
-          {filters.selectedSector && (
-            <motion.div
-              key="sector-filter"
-              className="active-pill"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2, delay: 0.05 }}
-            >
-              {filters.selectedSector} <button onClick={filters.clearSector}>✕</button>
-            </motion.div>
-          )}
-          {filters.searchQuery && (
-            <motion.div
-              key="search-filter"
-              className="active-pill"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2, delay: 0.1 }}
-            >
-              "{filters.searchQuery}" <button onClick={filters.clearSearch}>✕</button>
-            </motion.div>
-          )}
-          {(filters.selectedRegion || filters.selectedSector || filters.searchQuery) && (
-            <motion.button
-              key="clear-all"
-              className="clear-all"
-              onClick={filters.clearAll}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2, delay: 0.15 }}
-            >Clear all</motion.button>
-          )}
-        </AnimatePresence>
+        {selectedRegion && (
+          <div className="af-pill">
+            Region: {selectedRegion}
+            <button onClick={clearRegion}>×</button>
+          </div>
+        )}
+        {selectedSector && (
+          <div className="af-pill">
+            Sector: {selectedSector}
+            <button onClick={clearSector}>×</button>
+          </div>
+        )}
+        {searchQuery && (
+          <div className="af-pill">
+            Search: "{searchQuery}"
+            <button onClick={clearSearch}>×</button>
+          </div>
+        )}
       </div>
-      <div className="listings">
-        <AnimatePresence>
-          {filters.filtered.map(biz => (
-            <ListingCard key={biz.id} business={biz} onClick={() => onCardClick(biz.id)} />
+
+      {/* Dual View Container */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px' }}>
+        {/* Cards Grid */}
+        <div className="listings" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
+          <AnimatePresence>
+            {filteredList.length === 0 ? (
+              <div className="no-results" style={{ gridColumn: '1/-1', textAlign: 'center', padding: '4rem', color: 'var(--text-light)', fontSize: '14px' }}>
+                No businesses found — try adjusting your filters.
+              </div>
+            ) : (
+              filteredList.map(business => (
+                <ListingCard
+                  key={business.id}
+                  business={business}
+                  onClick={() => onCardClick(business.id)}
+                  isHovered={hoveredId === business.id}
+                  onMouseEnter={() => setHoveredId(business.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                />
+              ))
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Map View */}
+        <div style={{
+          background: 'var(--cream-dark)',
+          borderRadius: '8px',
+          border: '0.5px solid var(--border)',
+          position: 'relative',
+          minHeight: '400px',
+          overflow: 'hidden'
+        }}>
+          {/* Simplified Map SVG Background */}
+          <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', opacity: 0.3, position: 'absolute', top: 0, left: 0 }}>
+            <path d="M10 10 L90 10 L90 90 L10 90 Z" fill="var(--navy)" />
+          </svg>
+          
+          {/* Map Pins */}
+          {filteredList.map(business => (
+            <motion.div
+              key={business.id}
+              style={{
+                position: 'absolute',
+                left: `${business.coords.x}%`,
+                top: `${business.coords.y}%`,
+                transform: 'translate(-50%, -50%)',
+                cursor: 'pointer'
+              }}
+              animate={{
+                scale: hoveredId === business.id ? 1.4 : 1,
+                zIndex: hoveredId === business.id ? 10 : 1
+              }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              onClick={() => onCardClick(business.id)}
+              onMouseEnter={() => setHoveredId(business.id)}
+              onMouseLeave={() => setHoveredId(null)}
+            >
+              <div style={{
+                width: hoveredId === business.id ? 24 : 16,
+                height: hoveredId === business.id ? 24 : 16,
+                borderRadius: '50%',
+                background: avatarColor(business.sector),
+                border: '2px solid white',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+              }} />
+              {hoveredId === business.id && (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'white',
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    whiteSpace: 'nowrap',
+                    marginBottom: 8,
+                    fontSize: '12px',
+                    fontWeight: '500',
+                    color: 'var(--navy)'
+                  }}
+                >
+                  {business.name}
+                </motion.div>
+              )}
+            </motion.div>
           ))}
-        </AnimatePresence>
+        </div>
       </div>
     </section>
   );
