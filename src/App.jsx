@@ -13,6 +13,7 @@ import ListingModal from './components/ListingModal.jsx';
 import ListForm from './components/ListForm.jsx';
 import Toast from './components/Toast.jsx';
 import CustomCursor from './components/CustomCursor.jsx';
+import FoursquareSearch from './components/FoursquareSearch.jsx';
 import { motion } from 'framer-motion';
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
       <Regions selected={filters.selectedRegion} onSelect={filters.setRegion} />
       <WhyOne />
       <Directory filters={filters} onCardClick={modal.openModal} />
+      <section className="sec" id="discover">
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <FoursquareSearch />
+        </div>
+      </section>
       <CtaStrip onListClick={modal.openForm} />
       <Footer />
       <ListingModal business={modal.selectedBusiness} onClose={modal.closeModal} />
