@@ -78,6 +78,7 @@
   font-weight: 400;
   color: var(--text-mid);
   letter-spacing: 0.04em;
+  transition: color var(--micro-animation-duration) var(--micro-animation-easing);
 }
 
 .nav-links a::after {
@@ -88,7 +89,7 @@
   width: 0;
   height: 1px;
   background: var(--gold);
-  transition: width 0.25s ease;
+  transition: width var(--micro-animation-duration) var(--micro-animation-easing);
 }
 
 .nav-links a:hover::after {

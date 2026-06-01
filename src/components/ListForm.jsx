@@ -9,7 +9,7 @@ export default function ListForm({ onClose, showToast }) {
     setSubmitted(true);
     setTimeout(() => {
       onClose();
-      showToast('Thanks! Your listing is being reviewed and will go live shortly.');
+      showToast('Thanks! Your listing is being reviewed and will go live shortly.', 'success');
     }, 1500);
   };
 

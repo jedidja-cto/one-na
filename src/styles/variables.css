@@ -36,7 +36,14 @@
   --transition-btn: 0.18s ease;
   --transition-card: 0.2s ease;
   --transition-overlay: 0.18s ease;
+  --micro-animation-duration: 0.08s;
+  --micro-animation-easing: ease-out;
 
   --shadow: 0 1px 4px rgba(28, 43, 74, 0.06);
   --shadow-hover: 0 8px 32px rgba(28, 43, 74, 0.12);
+
+  /* Micro-interaction Colors */
+  --success-color: #22c55e;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
 }

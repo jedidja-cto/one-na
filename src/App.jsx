@@ -32,7 +32,7 @@ function App() {
       <Footer />
       <ListingModal business={modal.selectedBusiness} onClose={modal.closeModal} />
       {modal.isFormOpen && <ListForm onClose={modal.closeForm} showToast={toast.showToast} />}
-      <Toast isVisible={toast.isVisible} message={toast.message} />
+      <Toast isVisible={toast.isVisible} message={toast.message} type={toast.type} />
       <motion.button 
         className="float-btn" 
         onClick={modal.openForm}
