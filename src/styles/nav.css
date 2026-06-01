@@ -9,15 +9,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 5rem;
-  background: rgba(247, 242, 234, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 0.5px solid transparent;
-  transition: border-bottom-color var(--transition-overlay);
+  background: rgba(250, 250, 249, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid rgba(28, 43, 74, 0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav.scrolled {
-  border-bottom-color: var(--border);
+  background: rgba(250, 250, 249, 0.92);
+  box-shadow: 0 1px 20px rgba(28, 43, 74, 0.06);
 }
 
 .nav-brand {
@@ -72,11 +73,11 @@
 
 .nav-links a {
   position: relative;
-  font-size: 14px;
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
   color: var(--text-mid);
-  letter-spacing: .03em;
-  transition: color var(--transition-btn);
+  letter-spacing: 0.04em;
 }
 
 .nav-links a::after {
@@ -86,16 +87,16 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--navy);
-  transition: width var(--transition-card);
-}
-
-.nav-links a:hover {
-  color: var(--navy);
+  background: var(--gold);
+  transition: width 0.25s ease;
 }
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--navy);
 }
 
 .nav-cta {

@@ -2,7 +2,8 @@
 .modal-bg {
   position: fixed;
   inset: 0;
-  background: rgba(28, 43, 74, 0.55);
+  background: rgba(28, 43, 74, 0.4);
+  backdrop-filter: blur(8px);
   z-index: 300;
   display: none;
   align-items: flex-start;
@@ -19,8 +20,10 @@
 }
 
 .modal-box {
-  background: var(--white);
-  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
   width: 100%;
   max-width: 560px;
   padding: var(--space-xl);
@@ -29,7 +32,7 @@
   transform: translateY(8px) scale(0.96);
   opacity: 0;
   transition: transform 0.22s ease-out, opacity 0.22s ease-out;
-  box-shadow: 0 20px 60px rgba(28, 43, 74, 0.18);
+  box-shadow: 0 24px 64px rgba(28,43,74,0.18);
 }
 
 .modal-bg.open .modal-box {

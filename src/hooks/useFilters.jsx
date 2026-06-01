@@ -35,11 +35,11 @@ export function useFilters() {
   });
 
   return {
-    searchQuery, setSearchQuery,
+    searchQuery, setSearchQuery, setSearch: setSearchQuery,
     selectedRegion, setSelectedRegion, setRegion: setSelectedRegion,
     selectedSector, setSelectedSector, setSector: setSelectedSector,
-    sortOrder, setSortOrder,
+    sortOrder, setSortOrder, setSort: setSortOrder,
     clearRegion, clearSector, clearSearch, clearAll,
-    filteredList: sorted,
+    filtered: sorted,
   };
 }

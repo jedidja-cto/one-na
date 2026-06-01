@@ -22,7 +22,7 @@ export default function Regions({ selected, onSelect }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
-        variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } }}
       >
         {REGIONS.map(region => (
           <motion.div
@@ -31,6 +31,7 @@ export default function Regions({ selected, onSelect }) {
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
             onClick={() => handleClick(region.name)}
           >
             <div className="rg-name">{region.name}</div>

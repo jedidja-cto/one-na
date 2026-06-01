@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
 :root {
-  --cream: #f7f2ea;
-  --cream-dark: #f0ebe1;
-  --cream-mid: #f0ebe1;
+  --cream: #fafaf9;
+  --cream-dark: #f5f0e8;
+  --cream-mid: #f5f0e8;
   --navy: #1c2b4a;
   --navy-mid: #273a61;
   --navy-light: #3b5381;
-  --gold: #a8742e;
-  --gold-light: #c48f48;
-  --gold-pale: #f1e6cf;
+  --gold: #b8860b;
+  --gold-light: #ca8a04;
+  --gold-pale: #fef3c7;
   --text: #1c2b4a;
   --text-mid: #57657b;
   --text-light: #97a1b1;
@@ -16,8 +18,8 @@
   --border-strong: rgba(28, 43, 74, 0.18);
   --white: #ffffff;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 
   --r-sm: 4px;
   --r-md: 6px;

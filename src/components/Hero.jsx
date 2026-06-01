@@ -84,7 +84,7 @@ export default function Hero({ filters }) {
             key={index}
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.4, delay: 0.4 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             {letter}
           </motion.span>
@@ -122,7 +122,7 @@ export default function Hero({ filters }) {
         {SECTORS.slice(0, 4).map(sector => (
           <motion.button 
             key={sector.name}
-            className="pill"
+            className="hero-pill"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             onClick={() => handleSectorClick(sector.name)}

@@ -12,13 +12,14 @@ export default function WhyOne() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
-        variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } }}
       >
         <motion.div 
           className="wc"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
         >
           <div className="wc-num">01</div>
           <div className="wc-title">Free to List</div>
@@ -29,6 +30,7 @@ export default function WhyOne() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
         >
           <div className="wc-num">02</div>
           <div className="wc-title">Trusted by Large Enterprises</div>
@@ -39,6 +41,7 @@ export default function WhyOne() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
         >
           <div className="wc-num">03</div>
           <div className="wc-title">Complete National Coverage</div>
