@@ -19,6 +19,17 @@ body {
   font-size: 14px;
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform-origin: 0 50%;
+  z-index: 400;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -51,6 +62,7 @@ img {
 /* Section Shell */
 .sec {
   padding: 100px 5rem;
+  background: var(--cream);
 }
 
 .sec:nth-child(even) {
@@ -64,15 +76,40 @@ img {
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: var(--space-xs);
+  border-left: 2px solid var(--gold);
+  padding-left: 10px;
 }
 
 .sec-title {
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
   font-weight: 300;
   color: var(--navy);
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+
+.pattern-divider {
+  min-height: 42px;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at center, rgba(184, 134, 11, 0.03) 0 7px, transparent 8px),
+    radial-gradient(circle at center, transparent 0 5px, rgba(184, 134, 11, 0.03) 6px, transparent 8px);
+  background-size: 34px 34px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+.type-band {
+  padding: 46px 5rem;
+  background: var(--cream-dark);
+  color: rgba(28, 43, 74, 0.18);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-style: italic;
+  line-height: 1.05;
+  text-align: center;
+  pointer-events: none;
 }
 
 .sec-head {

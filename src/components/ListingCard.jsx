@@ -1,10 +1,14 @@
-import { motion } from 'framer-motion'
-import { avatarColor } from '../utils/avatarColors'
+import { motion } from 'framer-motion';
+import { avatarColor } from '../utils/avatarColors';
 
 export default function ListingCard({ business, onCardClick }) {
+  const color = avatarColor(business.sector);
+  const isNew = business.added >= 12;
+
   return (
     <motion.div
       className="lc"
+      style={{ '--sector': color }}
       onClick={() => onCardClick(business.id)}
       layout
       initial={{ opacity: 0, y: 20 }}
@@ -14,16 +18,17 @@ export default function ListingCard({ business, onCardClick }) {
       whileHover={{ y: -2 }}
     >
       <div className="lc-top">
-        <div className="lc-av" style={{ background: avatarColor(business.sector) }}>
+        {isNew && <span className="lc-new">NEW</span>}
+        <div className="lc-av" style={{ background: color }}>
           {business.init}
         </div>
         <div className="lc-info">
           <div className="lc-name">{business.name}</div>
-          <div className="lc-sec">• {business.sector.toUpperCase()}</div>
+          <div className="lc-sec">- {business.sector.toUpperCase()}</div>
         </div>
         <div className="lc-rat">
           <span className="lc-rn">{business.rating}</span>
-          <span className="lc-rs">★★★★★</span>
+          <span className="lc-rs">*****</span>
         </div>
       </div>
       <div className="lc-desc">{business.desc}</div>
@@ -38,13 +43,13 @@ export default function ListingCard({ business, onCardClick }) {
       <div className="lc-foot">
         <div className="lc-loc">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            <circle cx="12" cy="9" r="2.5"/>
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+            <circle cx="12" cy="9" r="2.5" />
           </svg>
           {business.loc}
         </div>
-        <span className="lc-vp">View Profile →</span>
+        <span className="lc-vp">View Profile <span aria-hidden="true">-&gt;</span></span>
       </div>
     </motion.div>
-  )
+  );
 }

@@ -1,9 +1,32 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { BIZ, SECTORS, REGIONS } from '../data/data.js';
 import NamibiaMapCanvas from './NamibiaMapCanvas.jsx';
 
 export default function Hero({ filters }) {
   const { scrollY } = useScroll();
+  const dotX = useMotionValue(0);
+  const dotY = useMotionValue(0);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const placeholders = [
+    'Search companies in Windhoek...',
+    'Find mining companies in Erongo...',
+    'Discover tourism businesses...'
+  ];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setPlaceholderIndex(index => (index + 1) % placeholders.length);
+    }, 3000);
+    return () => window.clearInterval(timer);
+  }, [placeholders.length]);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    dotX.set(((e.clientX - rect.left) / rect.width - 0.5) * 16);
+    dotY.set(((e.clientY - rect.top) / rect.height - 0.5) * 16);
+  };
+
   const handleHeroSearch = (e) => {
     filters.setSearchQuery(e.target.value);
   };
@@ -15,15 +38,14 @@ export default function Hero({ filters }) {
     document.getElementById('directory')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const oryxX = useTransform(scrollY, [0, 500], [0, -30]);
-  const elephantX = useTransform(scrollY, [0, 500], [0, 30]);
+  const animalY = useTransform(scrollY, [0, 700], [0, -210]);
 
   const letters = ['O', 'N', 'E'];
 
   return (
-    <section className="hero" id="home" style={{ position: 'relative' }}>
+    <section className="hero" id="home" style={{ position: 'relative' }} onMouseMove={handleMouseMove}>
       <NamibiaMapCanvas />
-      <div className="hero-dots"></div>
+      <motion.div className="hero-dots" style={{ x: dotX, y: dotY }} />
 
       {/* Oryx silhouette left */}
       <motion.svg 
@@ -32,7 +54,7 @@ export default function Hero({ filters }) {
         fill="none"
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 0.13, x: 0 }}
-        style={{ x: oryxX }}
+        style={{ y: animalY }}
         transition={{ duration: 1, delay: 0.8 }}
       >
         <ellipse cx="55" cy="108" rx="30" ry="38" fill="var(--navy)"></ellipse>
@@ -52,7 +74,7 @@ export default function Hero({ filters }) {
         fill="none"
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 0.13, x: 0 }}
-        style={{ x: elephantX }}
+        style={{ y: animalY }}
         transition={{ duration: 1, delay: 0.8 }}
       >
         <ellipse cx="68" cy="108" rx="42" ry="36" fill="var(--navy)"></ellipse>
@@ -72,19 +94,13 @@ export default function Hero({ filters }) {
         transition={{ duration: 0.6, delay: 0.3 }}
       >Namibia's Business Directory</motion.div>
 
-      <h1 className="hero-h1" style={{
-        background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(168,116,46,0.07), transparent)',
-        backgroundPosition: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '0.2em',
-      }}>
+      <h1 className="hero-h1">
         {letters.map((letter, index) => (
           <motion.span 
             key={index}
-            initial={{ opacity: 0, y: -40 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.4 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.4, delay: 0.8 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             {letter}
           </motion.span>
@@ -97,7 +113,7 @@ export default function Hero({ filters }) {
         className="search-outer"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
+        transition={{ duration: 0.6, delay: 1.1 }}
       >
         <svg className="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="6"></circle>
@@ -106,10 +122,25 @@ export default function Hero({ filters }) {
         <input 
           className="search-bar" 
           type="text" 
-          placeholder="Search companies, services or regions…" 
+          placeholder="" 
           value={filters.searchQuery}
           onInput={handleHeroSearch}
         />
+        {!filters.searchQuery && (
+          <div className="search-placeholder" aria-hidden="true">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={placeholderIndex}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.35 }}
+              >
+                {placeholders[placeholderIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+        )}
         <button className="search-go" onClick={handleGoToDirectory}>Search</button>
       </motion.div>
 
@@ -117,7 +148,7 @@ export default function Hero({ filters }) {
         className="hero-pills"
         initial="hidden"
         animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.06, delayChildren: 1.3 } } }}
       >
         {SECTORS.slice(0, 4).map(sector => (
           <motion.button 
@@ -146,10 +177,10 @@ export default function Hero({ filters }) {
       </div>
 
       {/* dune waves */}
-      <svg className="hero-dune" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <motion.svg className="hero-dune" viewBox="0 0 1440 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" animate={{ scaleY: [1, 1.04, 1] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
         <path d="M0,200 C360,80 720,160 1080,100 C1260,65 1360,105 1440,80 L1440,200Z" fill="var(--cream-dark)" opacity=".55"></path>
         <path d="M0,200 C240,110 560,170 900,130 C1100,108 1280,140 1440,120 L1440,200Z" fill="var(--cream-dark)"></path>
-      </svg>
+      </motion.svg>
     </section>
   );
 }
